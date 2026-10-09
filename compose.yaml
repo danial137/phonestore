@@ -1,0 +1,17 @@
+services:
+  store:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      DATABASE_PATH: /app/data/store.sqlite
+      NODE_ENV: production
+    volumes:
+      - store-data:/app/data
+      - store-backups:/app/backups
+    restart: unless-stopped
+volumes:
+  store-data:
+  store-backups:
